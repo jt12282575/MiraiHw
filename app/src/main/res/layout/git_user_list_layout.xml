@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.git_all_user.GitUserListActivity">
-
-
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/git_user_rcvlist"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
