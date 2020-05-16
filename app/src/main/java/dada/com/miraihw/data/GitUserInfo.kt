@@ -12,8 +12,8 @@ data class GitUserInfo(
     @Json(name = "node_id")
      val nodeId: String? = null,
 
-    @Json(name = "avatar_url")
-     val avatarUrl: String? = null,
+    @field:Json(name = "avatar_url")
+     val avatarUrl: String,
 
     @Json(name = "gravatar_id")
      val gravatarId: String? = null,
@@ -55,7 +55,7 @@ data class GitUserInfo(
      val type: String? = null,
 
     @Json(name = "site_admin")
-     val siteAdmin: Boolean? = null,
+     val siteAdmin: Boolean? = false,
 
     @Json(name = "name")
      val name: String? = null,
@@ -67,7 +67,7 @@ data class GitUserInfo(
      val blog: String? = null,
 
     @Json(name = "location")
-     val location: Any? = null,
+     val location: String? = null,
 
     @Json(name = "email")
      val email: Any? = null,
@@ -76,7 +76,7 @@ data class GitUserInfo(
      val hireable: Any? = null,
 
     @Json(name = "bio")
-     val bio: Any? = null,
+     val bio: String? = null,
 
     @Json(name = "public_repos")
      val publicRepos: Int? = null,

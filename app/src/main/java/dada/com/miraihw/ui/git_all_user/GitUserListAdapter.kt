@@ -45,7 +45,7 @@ class GitUserListAdapter (
         fun bind(gitUser: GitUser,gitUserItemOnClickListener: GitUserItemOnClickListener,position: Int){
             login.text = gitUser.login
             staff.visibility = if (gitUser.siteAdmin) View.GONE else View.VISIBLE
-            val imageSize:Int = context.resources.getDimension(R.dimen.image_size).roundToInt()
+            val imageSize:Int = context.resources.getDimension(R.dimen.list_avatar_image_size).roundToInt()
             Picasso.get().load(gitUser.avatarUrl).resize(imageSize,imageSize).into(avatar)
             userContainer.setOnClickListener {
                 gitUserItemOnClickListener.onClick(it,position)
