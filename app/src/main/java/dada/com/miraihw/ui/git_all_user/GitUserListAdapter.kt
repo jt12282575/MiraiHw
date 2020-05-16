@@ -35,21 +35,21 @@ class GitUserListAdapter (
     }
 
     inner class GitUserListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val staff: Chip =itemView?.findViewById(R.id.staff)
-        private val avatar: CircleImageView =itemView?.findViewById(R.id.avatar)
-        private val login: TextView =itemView?.findViewById(R.id.login)
-        private val userContainer: ConstraintLayout = itemView?.findViewById(R.id.user_container)
-
-
+        private val tvStaff: Chip =itemView?.findViewById(R.id.chip_staff)
+        private val ciAvatar: CircleImageView =itemView?.findViewById(R.id.ci_avatar)
+        private val tvLogin: TextView =itemView?.findViewById(R.id.tv_login)
+        private val clUserContainer: ConstraintLayout = itemView?.findViewById(R.id.cl_user_container)
+        private val tvIndex:TextView = itemView?.findViewById(R.id.tv_index)
 
         fun bind(gitUser: GitUser,gitUserItemOnClickListener: GitUserItemOnClickListener,position: Int){
-            login.text = gitUser.login
-            staff.visibility = if (gitUser.siteAdmin) View.GONE else View.VISIBLE
+            tvLogin.text = gitUser.login
+            tvStaff.visibility = if (gitUser.siteAdmin) View.GONE else View.VISIBLE
             val imageSize:Int = context.resources.getDimension(R.dimen.list_avatar_image_size).roundToInt()
-            Picasso.get().load(gitUser.avatarUrl).resize(imageSize,imageSize).into(avatar)
-            userContainer.setOnClickListener {
+            Picasso.get().load(gitUser.avatarUrl).resize(imageSize,imageSize).into(ciAvatar)
+            clUserContainer.setOnClickListener {
                 gitUserItemOnClickListener.onClick(it,position)
             }
+            tvIndex.text = (position+1).toString()
         }
     }
 
