@@ -3,97 +3,97 @@ package dada.com.miraihw.data
 import com.squareup.moshi.Json
 
 data class GitUserInfo(
-    @Json(name = "login")
+    @field:Json(name = "login")
      val login: String? = null,
 
-    @Json(name = "id")
+    @field:Json(name = "id")
      val id: Int? = null,
 
-    @Json(name = "node_id")
+    @field:Json(name = "node_id")
      val nodeId: String? = null,
 
     @field:Json(name = "avatar_url")
      val avatarUrl: String,
 
-    @Json(name = "gravatar_id")
+    @field:Json(name = "gravatar_id")
      val gravatarId: String? = null,
 
-    @Json(name = "url")
+    @field:Json(name = "url")
      val url: String? = null,
 
-    @Json(name = "html_url")
+    @field:Json(name = "html_url")
      val htmlUrl: String? = null,
 
-    @Json(name = "followers_url")
+    @field:Json(name = "followers_url")
      val followersUrl: String? = null,
 
-    @Json(name = "following_url")
+    @field:Json(name = "following_url")
      val followingUrl: String? = null,
 
-    @Json(name = "gists_url")
+    @field:Json(name = "gists_url")
      val gistsUrl: String? = null,
 
-    @Json(name = "starred_url")
+    @field:Json(name = "starred_url")
      val starredUrl: String? = null,
 
-    @Json(name = "subscriptions_url")
+    @field:Json(name = "subscriptions_url")
      val subscriptionsUrl: String? = null,
 
-    @Json(name = "organizations_url")
+    @field:Json(name = "organizations_url")
      val organizationsUrl: String? = null,
 
-    @Json(name = "repos_url")
+    @field:Json(name = "repos_url")
      val reposUrl: String? = null,
 
-    @Json(name = "events_url")
+    @field:Json(name = "events_url")
      val eventsUrl: String? = null,
 
-    @Json(name = "received_events_url")
+    @field:Json(name = "received_events_url")
      val receivedEventsUrl: String? = null,
 
-    @Json(name = "type")
+    @field:Json(name = "type")
      val type: String? = null,
 
-    @Json(name = "site_admin")
+    @field:Json(name = "site_admin")
      val siteAdmin: Boolean? = false,
 
-    @Json(name = "name")
+    @field:Json(name = "name")
      val name: String? = null,
 
-    @Json(name = "company")
+    @field:Json(name = "company")
      val company: Any? = null,
 
-    @Json(name = "blog")
+    @field:Json(name = "blog")
      val blog: String? = null,
 
-    @Json(name = "location")
+    @field:Json(name = "location")
      val location: String? = null,
 
-    @Json(name = "email")
+    @field:Json(name = "email")
      val email: Any? = null,
 
-    @Json(name = "hireable")
+    @field:Json(name = "hireable")
      val hireable: Any? = null,
 
-    @Json(name = "bio")
+    @field:Json(name = "bio")
      val bio: String? = null,
 
-    @Json(name = "public_repos")
+    @field:Json(name = "public_repos")
      val publicRepos: Int? = null,
 
-    @Json(name = "public_gists")
+    @field:Json(name = "public_gists")
      val publicGists: Int? = null,
 
-    @Json(name = "followers")
+    @field:Json(name = "followers")
      val followers: Int? = null,
 
-    @Json(name = "following")
+    @field:Json(name = "following")
      val following: Int? = null,
 
-    @Json(name = "created_at")
+    @field:Json(name = "created_at")
      val createdAt: String? = null,
 
-    @Json(name = "updated_at")
+    @field:Json(name = "updated_at")
      val updatedAt: String? = null
 )
 
