@@ -1,6 +1,5 @@
 package dada.com.miraihw.ui.git_all_user
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -37,8 +36,13 @@ class GitUserListActivity : AppCompatActivity() {
                 }
             }
         )
-        git_user_rcvlist.layoutManager = LinearLayoutManager(this)
-        git_user_rcvlist.adapter = gitUserListAdapter
+        rcv_git_user_list.layoutManager = LinearLayoutManager(this)
+        rcv_git_user_list.adapter = gitUserListAdapter
+        srf_refresh_layout.setOnLoadMoreListener {
+            Toast.makeText(this,"Load more data",Toast.LENGTH_LONG).show()
+            srf_refresh_layout.finishLoadMore()
+        }
+
     }
 
 
