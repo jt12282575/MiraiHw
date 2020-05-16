@@ -1,6 +1,8 @@
 package dada.com.miraihw.ui.git_all_user
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -11,6 +13,7 @@ import com.pivincii.livedata_retrofit.network.ApiErrorResponse
 import com.pivincii.livedata_retrofit.network.ApiSuccessResponse
 import dada.com.miraihw.R
 import dada.com.miraihw.data.GitUser
+import dada.com.miraihw.ui.git_detail_page.GitUserDetailActivity
 import kotlinx.android.synthetic.main.git_user_list_layout.*
 
 
@@ -27,7 +30,13 @@ class GitUserListActivity : AppCompatActivity() {
     }
 
     private fun initView() {
-        gitUserListAdapter = GitUserListAdapter(this,gitUserList)
+        gitUserListAdapter = GitUserListAdapter(this,gitUserList,
+            object : GitUserListAdapter.GitUserItemOnClickListener {
+                override fun onClick(v: View, position: Int) {
+                    GitUserDetailActivity.launch(this@GitUserListActivity,gitUserList.get(position).login)
+                }
+            }
+        )
         git_user_rcvlist.layoutManager = LinearLayoutManager(this)
         git_user_rcvlist.adapter = gitUserListAdapter
     }
@@ -43,10 +52,8 @@ class GitUserListActivity : AppCompatActivity() {
                 val successResponse = it as ApiSuccessResponse
                 gitUserList.addAll(successResponse.body)
                 gitUserListAdapter?.notifyDataSetChanged()
-                //TODO load data success
-                Toast.makeText(this,"Load data",Toast.LENGTH_LONG).show()
             }else if(it is ApiEmptyResponse){
-                Toast.makeText(this,"Empty data",Toast.LENGTH_LONG).show()
+                //TODO show there is no userItem
             }
         })
     }
