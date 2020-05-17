@@ -2,16 +2,11 @@ package dada.com.miraihw.ui.git_detail_page
 
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Spannable
-import android.text.SpannableString
 import android.text.Spanned
-import android.text.TextUtils
 import android.text.method.LinkMovementMethod
-import android.text.style.ClickableSpan
-import android.text.style.ForegroundColorSpan
 import android.text.util.Linkify
 import android.view.View
 import android.widget.Toast
@@ -27,12 +22,11 @@ import dada.com.miraihw.R
 import dada.com.miraihw.const.Const.Companion.GIT_USER_LOGIN
 import dada.com.miraihw.data.GitUserInfo
 import dada.com.miraihw.util.NoUnderlineSpan
-import dada.com.miraihw.util.Util
 import kotlinx.android.synthetic.main.activity_git_user_detail.*
 import kotlin.math.roundToInt
 
 class GitUserDetailActivity : AppCompatActivity() {
-    lateinit var login: String
+    lateinit var loginStr: String
     lateinit var gitUserDetailViewModel: GitUserDetailViewModel
     val mockUserJson: String =
         "{\"login\":\"defunkt\",\"id\":2,\"node_id\":\"MDQ6VXNlcjI=\",\"avatar_url\":\"https://avatars0.githubusercontent.com/u/2?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/defunkt\",\"html_url\":\"https://github.com/defunkt\",\"followers_url\":\"https://api.github.com/users/defunkt/followers\",\"following_url\":\"https://api.github.com/users/defunkt/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/defunkt/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/defunkt/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/defunkt/subscriptions\",\"organizations_url\":\"https://api.github.com/users/defunkt/orgs\",\"repos_url\":\"https://api.github.com/users/defunkt/repos\",\"events_url\":\"https://api.github.com/users/defunkt/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/defunkt/received_events\",\"type\":\"User\",\"site_admin\":false,\"name\":\"Chris Wanstrath\",\"company\":null,\"blog\":\"http://chriswanstrath.com/\",\"location\":null,\"email\":null,\"hireable\":null,\"bio\":\"\uD83C\uDF54\",\"public_repos\":107,\"public_gists\":273,\"followers\":20986,\"following\":210,\"created_at\":\"2007-10-20T05:24:19Z\",\"updated_at\":\"2019-11-01T21:56:00Z\"}"
@@ -49,8 +43,8 @@ class GitUserDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_git_user_detail)
         initView()
-        initData()
         initViewModel()
+        initIntentData()
     }
 
     private fun loadFromMockData() {
@@ -71,21 +65,19 @@ class GitUserDetailActivity : AppCompatActivity() {
 
     private fun initViewModel() {
         gitUserDetailViewModel = ViewModelProviders.of(this).get(GitUserDetailViewModel::class.java)
-        if (!TextUtils.isEmpty(login)) {
-            gitUserDetailViewModel.loadGitUser(login).observe(this, Observer {
-                pb_loading.visibility = View.GONE
-                if (it is ApiErrorResponse) {
-                    val errorResponse = it as ApiErrorResponse
-                } else if (it is ApiSuccessResponse) {
-                    val successResponse = it as ApiSuccessResponse
-                    updateUI(it.body)
-                    val name = it.body.name
-                } else if (it is ApiEmptyResponse) {
-                    Toast.makeText(this, "Sorry, there are something went wrong", Toast.LENGTH_LONG)
-                        .show()
-                }
-            })
-        }
+        gitUserDetailViewModel.gitUserInfo.observe(this, Observer {
+            pb_loading.visibility = View.GONE
+            if (it is ApiErrorResponse) {
+                val errorResponse = it as ApiErrorResponse
+            } else if (it is ApiSuccessResponse) {
+                val successResponse = it as ApiSuccessResponse
+                updateUI(it.body)
+                val name = it.body.name
+            } else if (it is ApiEmptyResponse) {
+                Toast.makeText(this, "Sorry, there are something went wrong", Toast.LENGTH_LONG)
+                    .show()
+            }
+        })
 
     }
 
@@ -121,9 +113,10 @@ class GitUserDetailActivity : AppCompatActivity() {
 
     }
 
-    private fun initData() {
+    private fun initIntentData() {
         intent.getStringExtra(GIT_USER_LOGIN)?.let {
-            login = it
+            loginStr = it
+            gitUserDetailViewModel.login.value = loginStr
         }
     }
 

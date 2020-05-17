@@ -11,21 +11,20 @@ import com.pivincii.livedata_retrofit.network.ApiResponse
 import dada.com.miraihw.const.Const.Companion.INIT_SINCE_USER_ID
 import dada.com.miraihw.const.Const.Companion.USER_PER_PAGE
 import dada.com.miraihw.data.GitUser
+import dada.com.miraihw.repositary.Repositary
 
 
 class GitUserListViewModel : ViewModel() {
 
 
      var currentTailGitUserId = INIT_SINCE_USER_ID
-     val api = GitApi.get()
      val lastGitUserId = MutableLiveData<Int>()
      var gitUserList = mutableListOf<GitUser>()
+     val repositary = Repositary()
      val gitUserListData = Transformations.switchMap(lastGitUserId) {
-          api.getGitAllUsersPerPage(it,USER_PER_PAGE)
+          repositary.getGitAllUserPerPage(it)
      }
-     fun loadGitUsers():LiveData<ApiResponse<List<GitUser>>>{
-          return api.getGitAllUsersPerPage(INIT_SINCE_USER_ID,USER_PER_PAGE)
-     }
+
      fun loadMoreGitUsers(){
           lastGitUserId.value = currentTailGitUserId
      }

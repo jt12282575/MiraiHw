@@ -46,7 +46,7 @@ interface GitApi {
     fun getGitAllUsers():LiveData<ApiResponse<List<GitUser>>>
 
     @GET("users/{login}")
-    fun getGitUser(@Path("login") login:String):LiveData<ApiResponse<GitUserInfo>>
+    fun getGitUserInfo(@Path("login") login:String):LiveData<ApiResponse<GitUserInfo>>
 
     @GET("users")
     fun getGitAllUsersPerPage(
