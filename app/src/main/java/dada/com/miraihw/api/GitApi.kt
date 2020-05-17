@@ -15,6 +15,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 import java.util.concurrent.TimeUnit
 
 interface GitApi {
@@ -46,5 +47,11 @@ interface GitApi {
 
     @GET("users/{login}")
     fun getGitUser(@Path("login") login:String):LiveData<ApiResponse<GitUserInfo>>
+
+    @GET("users")
+    fun getGitAllUsersPerPage(
+        @Query("since") lastUserId:Int,
+        @Query("per_page") perPage:Int
+    ):LiveData<ApiResponse<List<GitUser>>>
 
 }
