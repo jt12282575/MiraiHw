@@ -21,30 +21,34 @@ import kotlinx.android.synthetic.main.git_user_list_layout.*
 class GitUserListActivity : AppCompatActivity() {
     lateinit var gitUserListViewModel: GitUserListViewModel
     lateinit var gitUserListAdapter: GitUserListAdapter
-    var gitUserList = mutableListOf<GitUser>()
-    var currentTailGitUserId = INIT_SINCE_USER_ID
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.git_user_list_layout)
-        initView()
-        initViewModel()
 
+        initViewModel()
+        initView()
     }
 
+
+
     private fun initView() {
-        gitUserListAdapter = GitUserListAdapter(this,gitUserList,
-            object : GitUserListAdapter.GitUserItemOnClickListener {
-                override fun onClick(v: View, position: Int) {
-                    GitUserDetailActivity.launch(this@GitUserListActivity,gitUserList.get(position).login)
+        gitUserListViewModel?.let {vm->
+            gitUserListAdapter = GitUserListAdapter(this,vm.gitUserList,
+                object : GitUserListAdapter.GitUserItemOnClickListener {
+                    override fun onClick(v: View, position: Int) {
+                        GitUserDetailActivity.launch(this@GitUserListActivity,vm.gitUserList.get(position).login)
+                    }
                 }
+            )
+            rcv_git_user_list.layoutManager = LinearLayoutManager(this)
+            rcv_git_user_list.adapter = gitUserListAdapter
+            srf_refresh_layout.setOnLoadMoreListener {
+                vm.loadMoreGitUsers()
             }
-        )
-        rcv_git_user_list.layoutManager = LinearLayoutManager(this)
-        rcv_git_user_list.adapter = gitUserListAdapter
-        srf_refresh_layout.setOnLoadMoreListener {
-            gitUserListViewModel.loadMoreGitUsers(currentTailGitUserId)
         }
+
 
     }
 
@@ -60,16 +64,17 @@ class GitUserListActivity : AppCompatActivity() {
                 Toast.makeText(this,errorResponse.errorMessage,Toast.LENGTH_LONG).show()
             }else if(it is ApiSuccessResponse){
                 val successResponse = it as ApiSuccessResponse
-                gitUserList.addAll(successResponse.body)
-                gitUserListAdapter?.notifyDataSetChanged()
-                if (successResponse.body.isNotEmpty()) {
-                    currentTailGitUserId = gitUserList.get(gitUserList.size-1).id
+                if (successResponse.body.isNotEmpty()
+                    && gitUserListViewModel.currentTailGitUserId!=  successResponse.body.get(successResponse.body.size-1).id) {
+                    gitUserListViewModel.currentTailGitUserId = successResponse.body.get(successResponse.body.size-1).id
+                    gitUserListViewModel.gitUserList.addAll(successResponse.body)
+                    gitUserListAdapter?.notifyDataSetChanged()
                 }
+
             }else if(it is ApiEmptyResponse){
                 //TODO show there is no userItem
             }
         })
-        //Load init data
-        gitUserListViewModel.loadMoreGitUsers(currentTailGitUserId)
+
     }
 }

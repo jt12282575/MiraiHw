@@ -14,16 +14,28 @@ import dada.com.miraihw.data.GitUser
 
 
 class GitUserListViewModel : ViewModel() {
+
+
+     var currentTailGitUserId = INIT_SINCE_USER_ID
      val api = GitApi.get()
      val lastGitUserId = MutableLiveData<Int>()
+     var gitUserList = mutableListOf<GitUser>()
      val gitUserListData = Transformations.switchMap(lastGitUserId) {
           api.getGitAllUsersPerPage(it,USER_PER_PAGE)
      }
      fun loadGitUsers():LiveData<ApiResponse<List<GitUser>>>{
           return api.getGitAllUsersPerPage(INIT_SINCE_USER_ID,USER_PER_PAGE)
      }
-     fun loadMoreGitUsers(id:Int){
-          lastGitUserId.value = id
+     fun loadMoreGitUsers(){
+          lastGitUserId.value = currentTailGitUserId
      }
+
+     init {
+          if (currentTailGitUserId == INIT_SINCE_USER_ID) {
+               loadMoreGitUsers()
+          }
+     }
+
+
 
 }
