@@ -11,6 +11,8 @@ import com.pivincii.livedata_retrofit.network.ApiEmptyResponse
 import com.pivincii.livedata_retrofit.network.ApiErrorResponse
 import com.pivincii.livedata_retrofit.network.ApiSuccessResponse
 import dada.com.miraihw.R
+import dada.com.miraihw.const.Const.Companion.INIT_SINCE_USER_ID
+import dada.com.miraihw.const.Const.Companion.LOAD_YET_SINCE_USER_ID
 import dada.com.miraihw.data.GitUser
 import dada.com.miraihw.ui.git_detail_page.GitUserDetailActivity
 import kotlinx.android.synthetic.main.git_user_list_layout.*
@@ -20,6 +22,8 @@ class GitUserListActivity : AppCompatActivity() {
     lateinit var gitUserListViewModel: GitUserListViewModel
     lateinit var gitUserListAdapter: GitUserListAdapter
     var gitUserList = mutableListOf<GitUser>()
+    var currentTailGitUserId = INIT_SINCE_USER_ID
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.git_user_list_layout)
@@ -39,8 +43,7 @@ class GitUserListActivity : AppCompatActivity() {
         rcv_git_user_list.layoutManager = LinearLayoutManager(this)
         rcv_git_user_list.adapter = gitUserListAdapter
         srf_refresh_layout.setOnLoadMoreListener {
-            Toast.makeText(this,"Load more data",Toast.LENGTH_LONG).show()
-            srf_refresh_layout.finishLoadMore()
+            gitUserListViewModel.loadMoreGitUsers(currentTailGitUserId)
         }
 
     }
@@ -51,6 +54,7 @@ class GitUserListActivity : AppCompatActivity() {
         gitUserListViewModel = ViewModelProviders.of(this).get(GitUserListViewModel::class.java)
         gitUserListViewModel.gitUserListData.observe(this, Observer {
             pb_loading.visibility = View.GONE
+            srf_refresh_layout.finishLoadMore()
             if (it is ApiErrorResponse){
                 val errorResponse = it as ApiErrorResponse
                 Toast.makeText(this,errorResponse.errorMessage,Toast.LENGTH_LONG).show()
@@ -58,9 +62,14 @@ class GitUserListActivity : AppCompatActivity() {
                 val successResponse = it as ApiSuccessResponse
                 gitUserList.addAll(successResponse.body)
                 gitUserListAdapter?.notifyDataSetChanged()
+                if (successResponse.body.isNotEmpty()) {
+                    currentTailGitUserId = gitUserList.get(gitUserList.size-1).id
+                }
             }else if(it is ApiEmptyResponse){
                 //TODO show there is no userItem
             }
         })
+        //Load init data
+        gitUserListViewModel.loadMoreGitUsers(currentTailGitUserId)
     }
 }
