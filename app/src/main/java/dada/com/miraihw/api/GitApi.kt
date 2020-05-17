@@ -8,9 +8,7 @@ import dada.com.miraihw.const.Const.Companion.BASE_URL
 import dada.com.miraihw.data.GitUser
 import dada.com.miraihw.data.GitUserInfo
 import okhttp3.OkHttpClient
-import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET

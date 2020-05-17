@@ -15,8 +15,6 @@ import androidx.lifecycle.ViewModelProviders
 import com.pivincii.livedata_retrofit.network.ApiEmptyResponse
 import com.pivincii.livedata_retrofit.network.ApiErrorResponse
 import com.pivincii.livedata_retrofit.network.ApiSuccessResponse
-import com.squareup.moshi.JsonAdapter
-import com.squareup.moshi.Moshi
 import com.squareup.picasso.Picasso
 import dada.com.miraihw.R
 import dada.com.miraihw.const.Const.Companion.GIT_USER_LOGIN
@@ -28,8 +26,6 @@ import kotlin.math.roundToInt
 class GitUserDetailActivity : AppCompatActivity() {
     lateinit var loginStr: String
     lateinit var gitUserDetailViewModel: GitUserDetailViewModel
-    val mockUserJson: String =
-        "{\"login\":\"defunkt\",\"id\":2,\"node_id\":\"MDQ6VXNlcjI=\",\"avatar_url\":\"https://avatars0.githubusercontent.com/u/2?v=4\",\"gravatar_id\":\"\",\"url\":\"https://api.github.com/users/defunkt\",\"html_url\":\"https://github.com/defunkt\",\"followers_url\":\"https://api.github.com/users/defunkt/followers\",\"following_url\":\"https://api.github.com/users/defunkt/following{/other_user}\",\"gists_url\":\"https://api.github.com/users/defunkt/gists{/gist_id}\",\"starred_url\":\"https://api.github.com/users/defunkt/starred{/owner}{/repo}\",\"subscriptions_url\":\"https://api.github.com/users/defunkt/subscriptions\",\"organizations_url\":\"https://api.github.com/users/defunkt/orgs\",\"repos_url\":\"https://api.github.com/users/defunkt/repos\",\"events_url\":\"https://api.github.com/users/defunkt/events{/privacy}\",\"received_events_url\":\"https://api.github.com/users/defunkt/received_events\",\"type\":\"User\",\"site_admin\":false,\"name\":\"Chris Wanstrath\",\"company\":null,\"blog\":\"http://chriswanstrath.com/\",\"location\":null,\"email\":null,\"hireable\":null,\"bio\":\"\uD83C\uDF54\",\"public_repos\":107,\"public_gists\":273,\"followers\":20986,\"following\":210,\"created_at\":\"2007-10-20T05:24:19Z\",\"updated_at\":\"2019-11-01T21:56:00Z\"}"
 
     companion object {
         fun launch(context: Context, login: String) {
@@ -45,16 +41,6 @@ class GitUserDetailActivity : AppCompatActivity() {
         initView()
         initViewModel()
         initIntentData()
-    }
-
-    private fun loadFromMockData() {
-        pb_loading.visibility = View.GONE
-        val moshi = Moshi.Builder().build()
-        val adapter: JsonAdapter<GitUserInfo> = moshi.adapter(GitUserInfo::class.java)
-        val gitUserInfo = adapter.fromJson(mockUserJson)
-        gitUserInfo?.let {
-            updateUI(gitUserInfo)
-        }
     }
 
     private fun initView() {

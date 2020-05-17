@@ -6,6 +6,5 @@ class Const {
         val GIT_USER_LOGIN = "git_user_login"
         val USER_PER_PAGE = 20
         val INIT_SINCE_USER_ID = 0
-        val LOAD_YET_SINCE_USER_ID = -1
     }
 }

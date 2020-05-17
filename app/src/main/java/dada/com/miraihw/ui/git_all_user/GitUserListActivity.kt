@@ -11,9 +11,6 @@ import com.pivincii.livedata_retrofit.network.ApiEmptyResponse
 import com.pivincii.livedata_retrofit.network.ApiErrorResponse
 import com.pivincii.livedata_retrofit.network.ApiSuccessResponse
 import dada.com.miraihw.R
-import dada.com.miraihw.const.Const.Companion.INIT_SINCE_USER_ID
-import dada.com.miraihw.const.Const.Companion.LOAD_YET_SINCE_USER_ID
-import dada.com.miraihw.data.GitUser
 import dada.com.miraihw.ui.git_detail_page.GitUserDetailActivity
 import kotlinx.android.synthetic.main.git_user_list_layout.*
 
