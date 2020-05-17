@@ -1,161 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.git_detail_page.GitUserDetailActivity">
-    <ImageView
-        android:id="@+id/iv_cross"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:contentDescription="@string/leave_page"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        android:src="@drawable/signs" />
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/ci_avatar"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        app:layout_constraintTop_toBottomOf="@id/iv_cross"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="16dp"
-        />
-    <TextView
-        android:id="@+id/tv_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/login_gray"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@id/ci_avatar"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:textSize="24dp"
-        android:textStyle="bold"
-        tools:text="Name"
-        />
-    <TextView
-        android:id="@+id/tv_bio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/login_gray"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_name"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:textSize="20dp"
-        tools:text="Today is happy."
-        />
-    <View
-        android:id="@+id/v_line"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="2dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:visibility="invisible"
-        android:background="@color/line"
-        android:layout_marginTop="24dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_bio"
-        />
-    <ImageView
-        android:id="@+id/iv_person_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:layout_constraintTop_toBottomOf="@id/v_line"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="20dp"
-        android:src="@drawable/avatar" />
-    <TextView
-        android:id="@+id/tv_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:textColor="@color/login_gray"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        app:layout_constraintVertical_chainStyle="packed"
-        app:layout_constraintTop_toTopOf="@id/iv_person_icon"
-        app:layout_constraintBottom_toTopOf="@id/chip_staff"
-        app:layout_constraintLeft_toRightOf="@id/iv_person_icon"
-        tools:text="ooao" />
+        android:layout_height="match_parent"
+        android:paddingBottom="40dp">
 
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip_staff"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/staff"
-        android:textColor="@android:color/white"
-        android:textSize="18dp"
-        android:layout_marginLeft="20dp"
-        android:visibility="gone"
-        app:chipCornerRadius="18dp"
-        app:chipBackgroundColor="@color/staff"
-        app:layout_constraintTop_toBottomOf="@id/tv_login"
-        app:layout_constraintBottom_toBottomOf="@id/iv_person_icon"
-        app:layout_constraintLeft_toRightOf="@id/iv_person_icon"
-        tools:visibility="visible"/>
+        <ImageView
+            android:id="@+id/iv_cross"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/leave_page"
+            android:src="@drawable/signs"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/iv_marker_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:layout_constraintTop_toBottomOf="@id/iv_person_icon"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="48dp"
-        android:layout_marginLeft="20dp"
-        android:src="@drawable/map_marker" />
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/ci_avatar"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_cross" />
 
-    <TextView
-        android:id="@+id/tv_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:textColor="@color/login_gray"
-        android:textSize="16dp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="@id/iv_marker_icon"
-        app:layout_constraintBottom_toBottomOf="@id/iv_marker_icon"
-        app:layout_constraintLeft_toRightOf="@id/iv_marker_icon"
-        tools:text="San Francisco" />
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/login_gray"
+            android:textSize="24dp"
+            android:textStyle="bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ci_avatar"
+            tools:text="Name" />
 
-    <ImageView
-        android:id="@+id/iv_link_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        app:layout_constraintTop_toBottomOf="@id/iv_marker_icon"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="48dp"
-        android:layout_marginLeft="20dp"
-        android:src="@drawable/share_link" />
-    <TextView
-        android:id="@+id/tv_blog_link"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:textColor="@color/login_gray"
-        android:textColorLink="@color/hyper_link_color"
-        android:textSize="16dp"
-        app:layout_constraintVertical_chainStyle="packed"
-        app:layout_constraintTop_toTopOf="@id/iv_link_icon"
-        app:layout_constraintBottom_toBottomOf="@id/iv_link_icon"
-        app:layout_constraintLeft_toRightOf="@id/iv_link_icon"
-        tools:text="http://chriswanstrath.com/" />
-    <ProgressBar
-        android:id="@+id/pb_loading"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:visibility="visible"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        <TextView
+            android:id="@+id/tv_bio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:textColor="@color/login_gray"
+            android:textSize="20dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            tools:text="Today is happy." />
+
+        <View
+            android:id="@+id/v_line"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="20dp"
+            android:background="@color/line"
+            android:visibility="invisible"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_bio" />
+
+        <ImageView
+            android:id="@+id/iv_person_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/avatar"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/v_line" />
+
+        <TextView
+            android:id="@+id/tv_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:textColor="@color/login_gray"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/chip_staff"
+            app:layout_constraintLeft_toRightOf="@id/iv_person_icon"
+            app:layout_constraintTop_toTopOf="@id/iv_person_icon"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="ooao" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip_staff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:text="@string/staff"
+            android:textColor="@android:color/white"
+            android:textSize="18dp"
+            android:visibility="gone"
+            app:chipBackgroundColor="@color/staff"
+            app:chipCornerRadius="18dp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_person_icon"
+            app:layout_constraintLeft_toRightOf="@id/iv_person_icon"
+            app:layout_constraintTop_toBottomOf="@id/tv_login"
+            tools:visibility="visible" />
+
+        <ImageView
+            android:id="@+id/iv_marker_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="48dp"
+            android:src="@drawable/map_marker"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_person_icon" />
+
+        <TextView
+            android:id="@+id/tv_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:textColor="@color/login_gray"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/iv_marker_icon"
+            app:layout_constraintLeft_toRightOf="@id/iv_marker_icon"
+            app:layout_constraintTop_toTopOf="@id/iv_marker_icon"
+            tools:text="San Francisco" />
+
+        <ImageView
+            android:id="@+id/iv_link_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="48dp"
+            android:src="@drawable/share_link"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_marker_icon" />
+
+        <TextView
+            android:id="@+id/tv_blog_link"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="24dp"
+            android:textColor="@color/login_gray"
+            android:textColorLink="@color/hyper_link_color"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_link_icon"
+            app:layout_constraintLeft_toRightOf="@id/iv_link_icon"
+            app:layout_constraintTop_toTopOf="@id/iv_link_icon"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="http://chriswanstrath.com/" />
+
+        <ProgressBar
+            android:id="@+id/pb_loading"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
