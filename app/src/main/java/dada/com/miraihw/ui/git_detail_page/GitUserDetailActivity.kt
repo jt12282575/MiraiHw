@@ -69,12 +69,14 @@ class GitUserDetailActivity : AppCompatActivity() {
             pb_loading.visibility = View.GONE
             if (it is ApiErrorResponse) {
                 val errorResponse = it as ApiErrorResponse
+                Toast.makeText(this, errorResponse.errorMessage, Toast.LENGTH_LONG)
+                    .show()
             } else if (it is ApiSuccessResponse) {
                 val successResponse = it as ApiSuccessResponse
                 updateUI(it.body)
                 val name = it.body.name
             } else if (it is ApiEmptyResponse) {
-                Toast.makeText(this, "Sorry, there are something went wrong", Toast.LENGTH_LONG)
+                Toast.makeText(this, getString(R.string.load_empty_data), Toast.LENGTH_LONG)
                     .show()
             }
         })

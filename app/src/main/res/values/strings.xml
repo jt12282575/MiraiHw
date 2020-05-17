@@ -2,4 +2,5 @@
     <string name="app_name">MiraiHw</string>
     <string name="staff">STAFF</string>
     <string name="leave_page">leave page</string>
+    <string name="load_empty_data">Load empty data</string>
 </resources>

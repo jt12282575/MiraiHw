@@ -72,7 +72,7 @@ class GitUserListActivity : AppCompatActivity() {
                 }
 
             }else if(it is ApiEmptyResponse){
-                //TODO show there is no userItem
+                Toast.makeText(this,getString(R.string.load_empty_data),Toast.LENGTH_LONG).show()
             }
         })
 
