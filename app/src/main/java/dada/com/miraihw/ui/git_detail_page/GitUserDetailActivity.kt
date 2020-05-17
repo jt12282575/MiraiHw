@@ -87,7 +87,7 @@ class GitUserDetailActivity : AppCompatActivity() {
         gitUserInfo.avatarUrl?.let { imageUrl ->
             val imageSize: Int =
                 resources.getDimension(R.dimen.detail_avatar_image_size).roundToInt()
-            Picasso.get().load(imageUrl).resize(imageSize, imageSize).into(ci_avatar)
+            Picasso.get().load(imageUrl).placeholder(R.drawable.social).resize(imageSize, imageSize).into(ci_avatar)
         }
 
         tv_name.text = gitUserInfo.name

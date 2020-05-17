@@ -45,7 +45,7 @@ class GitUserListAdapter (
             tvLogin.text = gitUser.login
             tvStaff.visibility = if (gitUser.siteAdmin) View.GONE else View.VISIBLE
             val imageSize:Int = context.resources.getDimension(R.dimen.list_avatar_image_size).roundToInt()
-            Picasso.get().load(gitUser.avatarUrl).resize(imageSize,imageSize).into(ciAvatar)
+            Picasso.get().load(gitUser.avatarUrl).placeholder(R.drawable.social).resize(imageSize,imageSize).into(ciAvatar)
             clUserContainer.setOnClickListener {
                 gitUserItemOnClickListener.onClick(it,position)
             }
