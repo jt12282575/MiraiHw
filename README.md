@@ -15,4 +15,4 @@
 ------
 測試 APK 下載連結
 
-https://drive.google.com/file/d/1GivEZL9bhTtNXzCgY2LWwsVKk5ZyhOKL/view?usp=sharing
+https://drive.google.com/file/d/1xeQ_AfUbEGOhphZZYKisOrrJ9T3GzlZo/view?usp=sharing
