@@ -47,8 +47,10 @@ class GitUserListActivity : AppCompatActivity() {
 
 
     private fun initViewModel() {
+        pb_loading.visibility = View.VISIBLE
         gitUserListViewModel = ViewModelProviders.of(this).get(GitUserListViewModel::class.java)
         gitUserListViewModel.gitUserListData.observe(this, Observer {
+            pb_loading.visibility = View.GONE
             if (it is ApiErrorResponse){
                 val errorResponse = it as ApiErrorResponse
                 Toast.makeText(this,errorResponse.errorMessage,Toast.LENGTH_LONG).show()
