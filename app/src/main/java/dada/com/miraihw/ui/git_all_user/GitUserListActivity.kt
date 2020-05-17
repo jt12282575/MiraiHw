@@ -1,5 +1,6 @@
 package dada.com.miraihw.ui.git_all_user
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -11,6 +12,7 @@ import com.pivincii.livedata_retrofit.network.ApiEmptyResponse
 import com.pivincii.livedata_retrofit.network.ApiErrorResponse
 import com.pivincii.livedata_retrofit.network.ApiSuccessResponse
 import dada.com.miraihw.R
+import dada.com.miraihw.const.Const
 import dada.com.miraihw.ui.git_detail_page.GitUserDetailActivity
 import kotlinx.android.synthetic.main.git_user_list_layout.*
 
@@ -35,7 +37,7 @@ class GitUserListActivity : AppCompatActivity() {
             gitUserListAdapter = GitUserListAdapter(this,vm.gitUserList,
                 object : GitUserListAdapter.GitUserItemOnClickListener {
                     override fun onClick(v: View, position: Int) {
-                        GitUserDetailActivity.launch(this@GitUserListActivity,vm.gitUserList.get(position).login)
+                        gotoDetailPage(vm.gitUserList.get(position).login)
                     }
                 }
             )
@@ -46,9 +48,13 @@ class GitUserListActivity : AppCompatActivity() {
             }
         }
 
-
     }
 
+    private fun gotoDetailPage(login:String){
+        val intent = Intent(this, GitUserDetailActivity::class.java)
+        intent.putExtra(Const.GIT_USER_LOGIN, login)
+        startActivity(intent)
+    }
 
     private fun initViewModel() {
         pb_loading.visibility = View.VISIBLE

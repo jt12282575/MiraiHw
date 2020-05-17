@@ -27,13 +27,6 @@ class GitUserDetailActivity : AppCompatActivity() {
     lateinit var loginStr: String
     lateinit var gitUserDetailViewModel: GitUserDetailViewModel
 
-    companion object {
-        fun launch(context: Context, login: String) {
-            val intent = Intent(context, GitUserDetailActivity::class.java)
-            intent.putExtra(GIT_USER_LOGIN, login)
-            context.startActivity(intent)
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
