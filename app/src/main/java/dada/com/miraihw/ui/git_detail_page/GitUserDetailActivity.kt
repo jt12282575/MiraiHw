@@ -17,6 +17,7 @@ import com.pivincii.livedata_retrofit.network.ApiErrorResponse
 import com.pivincii.livedata_retrofit.network.ApiSuccessResponse
 import com.squareup.picasso.Picasso
 import dada.com.miraihw.R
+import dada.com.miraihw.config.Config
 import dada.com.miraihw.const.Const.Companion.GIT_USER_LOGIN
 import dada.com.miraihw.data.GitUserInfo
 import dada.com.miraihw.util.NoUnderlineSpan
@@ -75,7 +76,7 @@ class GitUserDetailActivity : AppCompatActivity() {
         tv_bio.text = gitUserInfo.bio
         tv_login.text = gitUserInfo.login
         gitUserInfo.siteAdmin?.let { siteAdmin ->
-            chip_staff.visibility = if (siteAdmin) View.GONE else View.VISIBLE
+            chip_staff.visibility = if (Config.showStaffTag(siteAdmin)) View.GONE else View.VISIBLE
         }
 
         tv_location.text = gitUserInfo.location

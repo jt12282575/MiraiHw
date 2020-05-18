@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.squareup.picasso.Picasso
 import dada.com.miraihw.R
+import dada.com.miraihw.config.Config
 import dada.com.miraihw.data.GitUser
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlin.math.roundToInt
@@ -43,7 +44,7 @@ class GitUserListAdapter (
 
         fun bind(gitUser: GitUser,gitUserItemOnClickListener: GitUserItemOnClickListener,position: Int){
             tvLogin.text = gitUser.login
-            tvStaff.visibility = if (gitUser.siteAdmin) View.GONE else View.VISIBLE
+            tvStaff.visibility = if (Config.showStaffTag(gitUser.siteAdmin)) View.GONE else View.VISIBLE
             val imageSize:Int = context.resources.getDimension(R.dimen.list_avatar_image_size).roundToInt()
             Picasso.get().load(gitUser.avatarUrl).placeholder(R.drawable.social).resize(imageSize,imageSize).into(ciAvatar)
             clUserContainer.setOnClickListener {
