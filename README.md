@@ -1,6 +1,3 @@
-# 受測驗者 - 簡大鈞
-
-
 ## 使用 Kotlin MVVM 架構實作 Git 使用者列表
 
 ### 完成項目
@@ -12,6 +9,3 @@
 ![image](https://github.com/jt12282575/MiraiHw/blob/master/mirai_hw_screenshots/mirai_screenshot1.PNG)
 ![image](https://github.com/jt12282575/MiraiHw/blob/master/mirai_hw_screenshots/mirai_screenshot2.PNG)
 
-------
-測試 APK 下載連結
-https://drive.google.com/file/d/1rO9u-UIxAJVaEPjxcwS3FpYv4EHbZOF_/view?usp=sharing
